@@ -1,0 +1,149 @@
+table 'Sales Pipeline'
+	lineageTag: 972f6e16-9714-4f94-b804-c0c8fa14f15d
+
+	column 'Lead ID'
+		dataType: string
+		lineageTag: f50a7064-cf2c-43e3-ae92-b065eabf0d19
+		summarizeBy: none
+		sourceColumn: Lead ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Name'
+		dataType: string
+		lineageTag: 322281ae-7d65-4159-90b5-563382501284
+		summarizeBy: none
+		sourceColumn: Customer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact Person'
+		dataType: string
+		lineageTag: 367d218f-7775-4c65-824f-97575c434087
+		summarizeBy: none
+		sourceColumn: Contact Person
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Source'
+		dataType: string
+		lineageTag: 0bc8c45f-8b36-4e4d-b8dc-dac27d4fc702
+		summarizeBy: none
+		sourceColumn: Lead Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Rep'
+		dataType: string
+		lineageTag: 40f39b1c-9bc3-482b-bd41-e0170ce0ef60
+		summarizeBy: none
+		sourceColumn: Sales Rep
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opportunity Name'
+		dataType: string
+		lineageTag: 0236ae76-10d5-49ea-8c02-2409c3eda798
+		summarizeBy: none
+		sourceColumn: Opportunity Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stage
+		dataType: string
+		lineageTag: 97c22bc7-e9d4-466a-9579-2224d5af3190
+		summarizeBy: none
+		sourceColumn: Stage
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stage Change Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 606949a4-20a9-43ad-91dd-79a49a456f28
+		summarizeBy: none
+		sourceColumn: Stage Change Date
+
+		variation Variation
+			isDefault
+			relationship: 8cddbbb0-28e3-4ddb-af06-4157eca56ec7
+			defaultHierarchy: LocalDateTable_42810b2c-b38c-40ee-a293-c9a211cfddea.Datumshierarchie
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Probability (%)'
+		dataType: double
+		formatString: 0\ %;-0\ %;0\ %
+		lineageTag: 61286df4-1291-45f1-8138-fabc1dd8e4ba
+		summarizeBy: sum
+		sourceColumn: Probability (%)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Expected Close Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: a851573b-0e9e-474e-b524-3990e8553346
+		summarizeBy: none
+		sourceColumn: Expected Close Date
+
+		variation Variation
+			isDefault
+			relationship: 48abac31-1db0-4702-8f51-b5c4681f1276
+			defaultHierarchy: LocalDateTable_92f464ec-5b1c-4c4d-83eb-5c29fa452f0a.Datumshierarchie
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Expected Order Volume (€)'
+		dataType: int64
+		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+		lineageTag: e90e6c46-d448-4f38-a7e4-f27dfd4cc656
+		summarizeBy: sum
+		sourceColumn: Expected Order Volume (€)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Loss Reason'
+		dataType: string
+		lineageTag: 38868a08-4771-429c-971f-efa2d08273f3
+		summarizeBy: none
+		sourceColumn: Loss Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column Industry
+		dataType: string
+		lineageTag: 00991dbd-c028-49fc-8be5-c9c06e7cfba9
+		summarizeBy: none
+		sourceColumn: Industry
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: f245208e-b47a-4dc6-8c5d-0defbb413586
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Sales Pipeline' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://raw.githubusercontent.com/julianhilgemann/salespipeline_case/refs/heads/main/Sales_Pipeline.xlsx"), null, true),
+				    #"Sales Pipeline_Sheet" = Source{[Item="Sales Pipeline",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Sales Pipeline_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Lead ID", type text}, {"Customer Name", type text}, {"Contact Person", type text}, {"Lead Source", type text}, {"Sales Rep", type text}, {"Opportunity Name", type text}, {"Stage", type text}, {"Stage Change Date", type date}, {"Probability (%)", type number}, {"Expected Close Date", type date}, {"Expected Order Volume (€)", Int64.Type}, {"Loss Reason", type text}, {"Industry", type text}, {"Country", type text}, {"Notes", type any}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Notes"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

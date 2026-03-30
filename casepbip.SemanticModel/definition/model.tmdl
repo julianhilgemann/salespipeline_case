@@ -1,0 +1,21 @@
+model Model
+	culture: de-DE
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: de-DE
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Sales Pipeline"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'Sales Pipeline'
+ref table DateTableTemplate_d7e80eff-317a-4bca-9984-bba5f6b59baa
+ref table LocalDateTable_42810b2c-b38c-40ee-a293-c9a211cfddea
+ref table LocalDateTable_92f464ec-5b1c-4c4d-83eb-5c29fa452f0a
+
+ref cultureInfo de-DE
+
