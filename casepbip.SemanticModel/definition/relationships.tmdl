@@ -12,32 +12,22 @@ relationship 4224b749-1668-99af-d86d-d61bc34f2229
 	fromColumn: fct_sales_pipeline.Stage
 	toColumn: dim_stage_definitions.Stages
 
-/// Star schema relationship: fct_sales_pipeline → dim_sales_rep
-/// Enables filtering pipeline metrics by sales representative.
 relationship r-dim-sales-rep-01
 	fromColumn: fct_sales_pipeline.'Sales Rep'
 	toColumn: dim_sales_rep.'Sales Rep'
 
-/// Star schema relationship: fct_sales_pipeline → dim_lead_source
-/// Enables filtering pipeline metrics by lead acquisition channel.
 relationship r-dim-lead-source-01
 	fromColumn: fct_sales_pipeline.'Lead Source'
 	toColumn: dim_lead_source.'Lead Source'
 
-/// Star schema relationship: fct_sales_pipeline → dim_industry
-/// Enables filtering pipeline metrics by industry vertical.
 relationship r-dim-industry-01
 	fromColumn: fct_sales_pipeline.Industry
 	toColumn: dim_industry.Industry
 
-/// Star schema relationship: fct_sales_pipeline → dim_country
-/// Enables filtering pipeline metrics by DACH country.
 relationship r-dim-country-01
 	fromColumn: fct_sales_pipeline.Country
 	toColumn: dim_country.Country
 
-/// Star schema relationship: fct_sales_pipeline → dim_customer
-/// Enables filtering pipeline metrics by customer account.
 relationship r-dim-customer-01
 	fromColumn: fct_sales_pipeline.'Customer Name'
 	toColumn: dim_customer.'Customer Name'
