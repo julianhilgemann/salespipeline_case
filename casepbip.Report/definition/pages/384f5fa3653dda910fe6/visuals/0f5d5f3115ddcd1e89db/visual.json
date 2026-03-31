@@ -4,10 +4,10 @@
   "position": {
     "x": 16,
     "y": 249,
-    "z": 7000,
+    "z": 6000,
     "height": 220,
     "width": 613,
-    "tabOrder": 70
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "shape",
@@ -164,6 +164,50 @@
               "expr": {
                 "Literal": {
                   "Value": "'BG Pipeline Stage'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "foreground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "border": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }

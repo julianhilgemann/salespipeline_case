@@ -82,14 +82,14 @@ table _measuretable
 				)
 			RETURN
 				DIVIDE ( _won_count, _won_count + _lost_count )
-		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		formatString: 0\ %;-0\ %;0\ %
 		displayFolder: Core KPIs
 		lineageTag: b6a7c8d9-6666-4a5b-8c7d-9e0f1a2b3c4d
 
 	/// Average deal size across all opportunities.
 	/// Provides context for pipeline composition and deal quality assessment.
 	measure 'Avg Deal Size' = AVERAGE ( fct_sales_pipeline[Expected Order Volume (€)] )
-		formatString: "€"\ #,0.00;-"€"\ #,0.00;"€"\ #,0.00
+		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
 		displayFolder: Core KPIs
 		lineageTag: b7a8c9d0-7777-4a5b-8c7d-9e0f1a2b3c4d
 

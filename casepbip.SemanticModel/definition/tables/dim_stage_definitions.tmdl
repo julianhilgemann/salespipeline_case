@@ -14,6 +14,9 @@ table dim_stage_definitions
 		lineageTag: f7f92be8-0afc-4d5d-9de0-39737259e78f
 		summarizeBy: none
 		sourceColumn: Stages
+		sortByColumn: ID
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
@@ -22,6 +25,20 @@ table dim_stage_definitions
 		lineageTag: 2378f5f0-02c2-4640-9da1-e937de3290a5
 		summarizeBy: none
 		sourceColumn: Probability
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status =
+			
+			
+			SWITCH (
+			    dim_stage_definitions[Stages],
+			    "Won", "Won",
+			    "Lost", "Lost",
+			    "Open"
+			)
+		lineageTag: 2151c84c-a54f-47db-8d80-34bf9939d465
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 

@@ -4,10 +4,10 @@
   "position": {
     "x": 270,
     "y": 130,
-    "z": 3000,
+    "z": 2000,
     "height": 103,
     "width": 235,
-    "tabOrder": 66
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "shape",
@@ -164,6 +164,50 @@
               "expr": {
                 "Literal": {
                   "Value": "'BG KPI Pipeline Value'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "foreground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "border": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }

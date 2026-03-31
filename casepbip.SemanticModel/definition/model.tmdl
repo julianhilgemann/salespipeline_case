@@ -23,6 +23,7 @@ ref table dim_lead_source
 ref table dim_industry
 ref table dim_country
 ref table dim_customer
+ref table data_glossary
 
 ref cultureInfo de-DE
 

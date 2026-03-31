@@ -4,10 +4,10 @@
   "position": {
     "x": 775,
     "y": 130,
-    "z": 5000,
+    "z": 4000,
     "height": 103,
     "width": 235,
-    "tabOrder": 68
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "shape",
@@ -164,6 +164,50 @@
               "expr": {
                 "Literal": {
                   "Value": "'BG KPI Win Rate'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "foreground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "border": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }

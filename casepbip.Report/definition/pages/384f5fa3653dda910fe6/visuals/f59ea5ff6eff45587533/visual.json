@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "f59ea5ff6eff45587533",
   "position": {
-    "x": 648,
-    "y": 485,
-    "z": 9000,
-    "height": 219,
-    "width": 616,
-    "tabOrder": 72
+    "x": 648.18414322250646,
+    "y": 484.50127877237856,
+    "z": 8000,
+    "height": 219.33503836317135,
+    "width": 615.44757033248084,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "shape",
@@ -164,6 +164,50 @@
               "expr": {
                 "Literal": {
                   "Value": "'BG Lead Source Conversion'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "foreground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "border": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }

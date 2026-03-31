@@ -4,10 +4,10 @@
   "position": {
     "x": 648,
     "y": 249,
-    "z": 8000,
+    "z": 7000,
     "height": 220,
     "width": 616,
-    "tabOrder": 71
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "shape",
@@ -164,6 +164,50 @@
               "expr": {
                 "Literal": {
                   "Value": "'BG Rep Performance'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "foreground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "border": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }

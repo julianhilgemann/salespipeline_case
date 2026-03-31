@@ -11,7 +11,7 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "Custom01718622945312487.json",
+      "name": "Custom9405070447812102.json",
       "reportVersionAtImport": {
         "visual": "2.6.0",
         "report": "3.1.0",
@@ -65,14 +65,14 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "Custom01718622945312487.json",
-          "path": "Custom01718622945312487.json",
-          "type": "CustomTheme"
-        },
-        {
           "name": "loyoslogo4377846551717308.svg",
           "path": "loyoslogo4377846551717308.svg",
           "type": "Image"
+        },
+        {
+          "name": "Custom9405070447812102.json",
+          "path": "Custom9405070447812102.json",
+          "type": "CustomTheme"
         }
       ]
     }
