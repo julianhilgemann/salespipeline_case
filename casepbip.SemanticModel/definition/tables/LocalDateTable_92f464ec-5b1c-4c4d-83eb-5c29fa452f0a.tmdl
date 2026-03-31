@@ -110,7 +110,7 @@ table LocalDateTable_92f464ec-5b1c-4c4d-83eb-5c29fa452f0a
 
 	partition LocalDateTable_92f464ec-5b1c-4c4d-83eb-5c29fa452f0a = calculated
 		mode: import
-		source = Calendar(Date(Year(MIN('Sales Pipeline'[Expected Close Date])), 1, 1), Date(Year(MAX('Sales Pipeline'[Expected Close Date])), 12, 31))
+		source = Calendar(Date(Year(MIN('fct_sales_pipeline'[Expected Close Date])), 1, 1), Date(Year(MAX('fct_sales_pipeline'[Expected Close Date])), 12, 31))
 
 	annotation __PBI_LocalDateTable = true
 

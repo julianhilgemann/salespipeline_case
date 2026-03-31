@@ -1,0 +1,41 @@
+table dim_stage_definitions
+	lineageTag: 80e06bcf-a1ad-4679-8ddc-ba7a29dc5e4d
+
+	column ID
+		dataType: string
+		lineageTag: 6380484a-02fe-47e0-8100-3f75af675931
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stages
+		dataType: string
+		lineageTag: f7f92be8-0afc-4d5d-9de0-39737259e78f
+		summarizeBy: none
+		sourceColumn: Stages
+
+		annotation SummarizationSetBy = Automatic
+
+	column Probability
+		dataType: string
+		lineageTag: 2378f5f0-02c2-4640-9da1-e937de3290a5
+		summarizeBy: none
+		sourceColumn: Probability
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_stage_definitions = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://raw.githubusercontent.com/julianhilgemann/salespipeline_case/refs/heads/main/Sales_Pipeline.xlsx"), null, true),
+				    #"Sales Pipeline_Sheet" = Source{[Item="Definitions",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Sales Pipeline_Sheet", [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

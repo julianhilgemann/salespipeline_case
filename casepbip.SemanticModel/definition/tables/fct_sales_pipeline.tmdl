@@ -1,4 +1,4 @@
-table 'Sales Pipeline'
+table fct_sales_pipeline
 	lineageTag: 972f6e16-9714-4f94-b804-c0c8fa14f15d
 
 	column 'Lead ID'
@@ -131,7 +131,7 @@ table 'Sales Pipeline'
 
 		annotation SummarizationSetBy = Automatic
 
-	partition 'Sales Pipeline' = m
+	partition fct_sales_pipeline = m
 		mode: import
 		source =
 				let

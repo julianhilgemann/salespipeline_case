@@ -1,0 +1,27 @@
+table _measuretable
+	lineageTag: 7797d3be-c07e-40f4-93a8-68c80e5d320e
+
+	/// placeholder measure
+	/// 
+	measure nothing = BLANK()
+		formatString: 0
+		lineageTag: 2504df0e-6eb4-40d6-948c-7faf6fbf82c4
+
+	/// regular count of lead id
+	/// 
+	measure leads = COUNT(fct_sales_pipeline[Lead ID])
+		formatString: 0
+		lineageTag: 67abda82-d25f-41b5-b2e3-0fc1fe866044
+
+	partition _measuretable = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlCKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

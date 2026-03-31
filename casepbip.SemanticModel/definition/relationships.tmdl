@@ -1,10 +1,14 @@
 relationship 8cddbbb0-28e3-4ddb-af06-4157eca56ec7
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'Sales Pipeline'.'Stage Change Date'
+	fromColumn: fct_sales_pipeline.'Stage Change Date'
 	toColumn: LocalDateTable_42810b2c-b38c-40ee-a293-c9a211cfddea.Date
 
 relationship 48abac31-1db0-4702-8f51-b5c4681f1276
 	joinOnDateBehavior: datePartOnly
-	fromColumn: 'Sales Pipeline'.'Expected Close Date'
+	fromColumn: fct_sales_pipeline.'Expected Close Date'
 	toColumn: LocalDateTable_92f464ec-5b1c-4c4d-83eb-5c29fa452f0a.Date
+
+relationship 4224b749-1668-99af-d86d-d61bc34f2229
+	fromColumn: fct_sales_pipeline.Stage
+	toColumn: dim_stage_definitions.Stages
 
