@@ -1,17 +1,192 @@
 table _measuretable
 	lineageTag: 7797d3be-c07e-40f4-93a8-68c80e5d320e
 
-	/// placeholder measure
-	/// 
-	measure nothing = BLANK()
-		formatString: 0
-		lineageTag: 2504df0e-6eb4-40d6-948c-7faf6fbf82c4
+	/// Total monetary value of all deals currently in the active pipeline.
+	/// Excludes terminal stages (Won, Lost) to reflect only actionable revenue.
+	/// Primary KPI card metric on the dashboard.
+	measure 'Total Pipeline Value' =
+			// Filter out terminal stages; sum only open deal values
+			CALCULATE (
+				SUM ( fct_sales_pipeline[Expected Order Volume (€)] ),
+				NOT ( fct_sales_pipeline[Stage] IN { "Won", "Lost" } )
+			)
+		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+		displayFolder: Core KPIs
+		lineageTag: b1a2c3d4-1111-4a5b-8c7d-9e0f1a2b3c4d
 
-	/// regular count of lead id
-	/// 
-	measure leads = COUNT(fct_sales_pipeline[Lead ID])
-		formatString: 0
-		lineageTag: 67abda82-d25f-41b5-b2e3-0fc1fe866044
+	/// Risk-adjusted pipeline value.
+	/// Multiplies each open deal's volume by its stage-based win probability.
+	/// Provides a more realistic revenue forecast than the raw pipeline total.
+	measure 'Weighted Pipeline Value' =
+			// Iterate open deals only; multiply volume × probability per row
+			SUMX (
+				FILTER (
+					fct_sales_pipeline,
+					NOT ( fct_sales_pipeline[Stage] IN { "Won", "Lost" } )
+				),
+				fct_sales_pipeline[Expected Order Volume (€)]
+					* fct_sales_pipeline[Probability (%)]
+			)
+		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+		displayFolder: Core KPIs
+		lineageTag: b2a3c4d5-2222-4a5b-8c7d-9e0f1a2b3c4d
+
+	/// Total revenue from closed-won deals.
+	/// The primary outcome metric — represents realised revenue.
+	measure 'Total Won Revenue' =
+			CALCULATE (
+				SUM ( fct_sales_pipeline[Expected Order Volume (€)] ),
+				fct_sales_pipeline[Stage] = "Won"
+			)
+		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+		displayFolder: Core KPIs
+		lineageTag: b3a4c5d6-3333-4a5b-8c7d-9e0f1a2b3c4d
+
+	/// Total value of deals that were lost.
+	/// Quantifies missed revenue opportunity — useful for loss impact analysis.
+	measure 'Total Lost Value' =
+			CALCULATE (
+				SUM ( fct_sales_pipeline[Expected Order Volume (€)] ),
+				fct_sales_pipeline[Stage] = "Lost"
+			)
+		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+		displayFolder: Core KPIs
+		lineageTag: b4a5c6d7-4444-4a5b-8c7d-9e0f1a2b3c4d
+
+	/// Count of deals still in the active pipeline (non-terminal stages).
+	/// Answers "how many deals are we currently working on?"
+	/// Displayed as a KPI card on the dashboard.
+	measure 'Open Deals' =
+			CALCULATE (
+				COUNTROWS ( fct_sales_pipeline ),
+				NOT ( fct_sales_pipeline[Stage] IN { "Won", "Lost" } )
+			)
+		formatString: #,0
+		displayFolder: Core KPIs
+		lineageTag: b5a6c7d8-5555-4a5b-8c7d-9e0f1a2b3c4d
+
+	/// Win rate calculated across closed deals only.
+	/// Denominator = Won + Lost (excludes open deals still in progress).
+	/// This prevents in-progress deals from deflating the conversion rate.
+	/// DIVIDE is used for safe division (returns BLANK on zero denominator).
+	measure 'Win Rate' =
+			VAR _won_count =
+				CALCULATE (
+					COUNTROWS ( fct_sales_pipeline ),
+					fct_sales_pipeline[Stage] = "Won"
+				)
+			VAR _lost_count =
+				CALCULATE (
+					COUNTROWS ( fct_sales_pipeline ),
+					fct_sales_pipeline[Stage] = "Lost"
+				)
+			RETURN
+				DIVIDE ( _won_count, _won_count + _lost_count )
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		displayFolder: Core KPIs
+		lineageTag: b6a7c8d9-6666-4a5b-8c7d-9e0f1a2b3c4d
+
+	/// Average deal size across all opportunities.
+	/// Provides context for pipeline composition and deal quality assessment.
+	measure 'Avg Deal Size' =
+			AVERAGE ( fct_sales_pipeline[Expected Order Volume (€)] )
+		formatString: "€"\ #,0.00;-"€"\ #,0.00;"€"\ #,0.00
+		displayFolder: Core KPIs
+		lineageTag: b7a8c9d0-7777-4a5b-8c7d-9e0f1a2b3c4d
+
+	/// Number of deals closed as Won.
+	/// Used in the Rep Performance leaderboard table.
+	measure 'Deals Won' =
+			CALCULATE (
+				COUNTROWS ( fct_sales_pipeline ),
+				fct_sales_pipeline[Stage] = "Won"
+			)
+		formatString: #,0
+		displayFolder: Rep Performance
+		lineageTag: c1b2d3e4-1111-4a5b-8c7d-1a2b3c4d5e6f
+
+	/// Number of deals closed as Lost.
+	/// Paired with Deals Won in the rep leaderboard for full context.
+	measure 'Deals Lost' =
+			CALCULATE (
+				COUNTROWS ( fct_sales_pipeline ),
+				fct_sales_pipeline[Stage] = "Lost"
+			)
+		formatString: #,0
+		displayFolder: Rep Performance
+		lineageTag: c2b3d4e5-2222-4a5b-8c7d-1a2b3c4d5e6f
+
+	/// Total deal count across all stages for a given filter context.
+	/// Provides the denominator context alongside win/loss counts in the rep table.
+	measure 'Deal Count' =
+			COUNTROWS ( fct_sales_pipeline )
+		formatString: #,0
+		displayFolder: Rep Performance
+		lineageTag: c3b4d5e6-3333-4a5b-8c7d-1a2b3c4d5e6f
+
+	/// Count of deals per stage — driven by the visual's filter context.
+	/// Powers the "Pipeline by Stage" horizontal bar chart labels.
+	measure 'Stage Deal Count' =
+			COUNTROWS ( fct_sales_pipeline )
+		formatString: #,0
+		displayFolder: Stage Analysis
+		lineageTag: d1c2e3f4-1111-4a5b-8c7d-2a3b4c5d6e7f
+
+	/// Total unweighted deal value per stage.
+	/// The pipeline bar chart uses this as bar length (value, not count).
+	measure 'Stage Value' =
+			SUM ( fct_sales_pipeline[Expected Order Volume (€)] )
+		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+		displayFolder: Stage Analysis
+		lineageTag: d2c3e4f5-2222-4a5b-8c7d-2a3b4c5d6e7f
+
+	/// Probability-weighted deal value per stage.
+	/// Each deal's volume × its stage probability — more conservative than
+	/// raw Stage Value and useful for revenue forecasting by funnel position.
+	measure 'Stage Weighted Value' =
+			SUMX (
+				fct_sales_pipeline,
+				fct_sales_pipeline[Expected Order Volume (€)]
+					* fct_sales_pipeline[Probability (%)]
+			)
+		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
+		displayFolder: Stage Analysis
+		lineageTag: d3c4e5f6-3333-4a5b-8c7d-2a3b4c5d6e7f
+
+	/// Count of lost deals, sliceable by Loss Reason dimension.
+	/// Powers the "Loss Reasons" bar chart on the dashboard.
+	measure 'Loss Count' =
+			CALCULATE (
+				COUNTROWS ( fct_sales_pipeline ),
+				fct_sales_pipeline[Stage] = "Lost"
+			)
+		formatString: #,0
+		displayFolder: Loss Analysis
+		lineageTag: e1d2f3a4-1111-4a5b-8c7d-3a4b5c6d7e8f
+
+	/// Loss rate segmented by the current filter context (typically Lead Source).
+	/// Uses ALL on Stage to compute the total deals from the current source,
+	/// regardless of any stage filter — ensuring the denominator counts
+	/// all deals from that source, not just lost ones.
+	/// Key insight: which acquisition channels produce the highest loss rates?
+	measure 'Loss Rate by Source' =
+			VAR _lost_from_source =
+				// Count of lost deals within current filter context (e.g., a specific Lead Source)
+				CALCULATE (
+					COUNTROWS ( fct_sales_pipeline ),
+					fct_sales_pipeline[Stage] = "Lost"
+				)
+			VAR _total_from_source =
+				// ALL on Stage removes stage filter while preserving other filters (source, rep, etc.)
+				CALCULATE (
+					COUNTROWS ( fct_sales_pipeline ),
+					ALL ( fct_sales_pipeline[Stage] )
+				)
+			RETURN
+				DIVIDE ( _lost_from_source, _total_from_source )
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		displayFolder: Loss Analysis
+		lineageTag: e2d3f4a5-2222-4a5b-8c7d-3a4b5c6d7e8f
 
 	partition _measuretable = m
 		mode: import
@@ -22,6 +197,8 @@ table _measuretable
 				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
 				in
 				    #"Removed Columns"
+
+	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 

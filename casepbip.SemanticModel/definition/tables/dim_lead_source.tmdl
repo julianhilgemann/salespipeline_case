@@ -1,0 +1,32 @@
+/// Dimension table: Lead Sources (acquisition channels).
+/// One row per unique lead source — enables filtering and the
+/// "Lead Source Conversion" stacked bar chart on the dashboard.
+table dim_lead_source
+	lineageTag: a3b4c5d6-7e8f-4a0b-1c2d-3e4f5a6b7c8d
+
+	column 'Lead Source'
+		dataType: string
+		lineageTag: a4b5c6d7-8e9f-4a1b-2c3d-4e5f6a7b8c9d
+		summarizeBy: none
+		sourceColumn: Lead Source
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_lead_source = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://raw.githubusercontent.com/julianhilgemann/salespipeline_case/refs/heads/main/Sales_Pipeline.xlsx"), null, true),
+				    #"Sales Pipeline_Sheet" = Source{[Item="Sales Pipeline",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Sales Pipeline_Sheet", [PromoteAllScalars=true]),
+				    #"Select Column" = Table.SelectColumns(#"Promoted Headers", {"Lead Source"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Select Column"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Duplicates", {{"Lead Source", type text}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type", {{"Lead Source", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

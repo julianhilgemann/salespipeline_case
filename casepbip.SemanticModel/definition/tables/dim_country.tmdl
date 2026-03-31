@@ -1,0 +1,32 @@
+/// Dimension table: Countries (DACH region).
+/// One row per unique country — enables geographic filtering
+/// across Austria, Germany, and Switzerland.
+table dim_country
+	lineageTag: a7b8c9d0-1e2f-4a4b-5c6d-7e8f9a0b1c2d
+
+	column Country
+		dataType: string
+		lineageTag: a8b9c0d1-2e3f-4a5b-6c7d-8e9f0a1b2c3d
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_country = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://raw.githubusercontent.com/julianhilgemann/salespipeline_case/refs/heads/main/Sales_Pipeline.xlsx"), null, true),
+				    #"Sales Pipeline_Sheet" = Source{[Item="Sales Pipeline",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Sales Pipeline_Sheet", [PromoteAllScalars=true]),
+				    #"Select Column" = Table.SelectColumns(#"Promoted Headers", {"Country"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Select Column"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Duplicates", {{"Country", type text}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type", {{"Country", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

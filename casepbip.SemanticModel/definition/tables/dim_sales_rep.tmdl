@@ -1,0 +1,32 @@
+/// Dimension table: Sales Representatives.
+/// One row per unique sales rep — supports star schema filtering
+/// and the Rep Performance leaderboard on the dashboard.
+table dim_sales_rep
+	lineageTag: a1b2c3d4-5e6f-4a8b-9c0d-1e2f3a4b5c6d
+
+	column 'Sales Rep'
+		dataType: string
+		lineageTag: a2b3c4d5-6e7f-4a9b-0c1d-2e3f4a5b6c7d
+		summarizeBy: none
+		sourceColumn: Sales Rep
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_sales_rep = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://raw.githubusercontent.com/julianhilgemann/salespipeline_case/refs/heads/main/Sales_Pipeline.xlsx"), null, true),
+				    #"Sales Pipeline_Sheet" = Source{[Item="Sales Pipeline",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Sales Pipeline_Sheet", [PromoteAllScalars=true]),
+				    #"Select Column" = Table.SelectColumns(#"Promoted Headers", {"Sales Rep"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Select Column"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Duplicates", {{"Sales Rep", type text}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type", {{"Sales Rep", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

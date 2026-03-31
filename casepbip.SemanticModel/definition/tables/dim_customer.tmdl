@@ -1,0 +1,32 @@
+/// Dimension table: Customers (Account level).
+/// One row per unique customer name — enables account-level analysis.
+/// Note: only 3 customers exist in this dataset (AlphaTech, BetaLogics, GammaSolutions).
+table dim_customer
+	lineageTag: a9b0c1d2-3e4f-4a6b-7c8d-9e0f1a2b3c4d
+
+	column 'Customer Name'
+		dataType: string
+		lineageTag: b0c1d2e3-4e5f-4a7b-8c9d-0e1f2a3b4c5d
+		summarizeBy: none
+		sourceColumn: Customer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_customer = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://raw.githubusercontent.com/julianhilgemann/salespipeline_case/refs/heads/main/Sales_Pipeline.xlsx"), null, true),
+				    #"Sales Pipeline_Sheet" = Source{[Item="Sales Pipeline",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Sales Pipeline_Sheet", [PromoteAllScalars=true]),
+				    #"Select Column" = Table.SelectColumns(#"Promoted Headers", {"Customer Name"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Select Column"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Duplicates", {{"Customer Name", type text}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type", {{"Customer Name", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

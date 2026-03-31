@@ -1,0 +1,32 @@
+/// Dimension table: Industry Verticals.
+/// One row per unique industry — enables cross-filtering
+/// the dashboard by customer industry segment.
+table dim_industry
+	lineageTag: a5b6c7d8-9e0f-4a2b-3c4d-5e6f7a8b9c0d
+
+	column Industry
+		dataType: string
+		lineageTag: a6b7c8d9-0e1f-4a3b-4c5d-6e7f8a9b0c1d
+		summarizeBy: none
+		sourceColumn: Industry
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_industry = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(Web.Contents("https://raw.githubusercontent.com/julianhilgemann/salespipeline_case/refs/heads/main/Sales_Pipeline.xlsx"), null, true),
+				    #"Sales Pipeline_Sheet" = Source{[Item="Sales Pipeline",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Sales Pipeline_Sheet", [PromoteAllScalars=true]),
+				    #"Select Column" = Table.SelectColumns(#"Promoted Headers", {"Industry"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Select Column"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Duplicates", {{"Industry", type text}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type", {{"Industry", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
