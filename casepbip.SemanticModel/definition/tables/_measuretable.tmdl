@@ -88,8 +88,7 @@ table _measuretable
 
 	/// Average deal size across all opportunities.
 	/// Provides context for pipeline composition and deal quality assessment.
-	measure 'Avg Deal Size' =
-			AVERAGE ( fct_sales_pipeline[Expected Order Volume (€)] )
+	measure 'Avg Deal Size' = AVERAGE ( fct_sales_pipeline[Expected Order Volume (€)] )
 		formatString: "€"\ #,0.00;-"€"\ #,0.00;"€"\ #,0.00
 		displayFolder: Core KPIs
 		lineageTag: b7a8c9d0-7777-4a5b-8c7d-9e0f1a2b3c4d
@@ -118,24 +117,21 @@ table _measuretable
 
 	/// Total deal count across all stages for a given filter context.
 	/// Provides the denominator context alongside win/loss counts in the rep table.
-	measure 'Deal Count' =
-			COUNTROWS ( fct_sales_pipeline )
+	measure 'Deal Count' = COUNTROWS ( fct_sales_pipeline )
 		formatString: #,0
 		displayFolder: Rep Performance
 		lineageTag: c3b4d5e6-3333-4a5b-8c7d-1a2b3c4d5e6f
 
 	/// Count of deals per stage — driven by the visual's filter context.
 	/// Powers the "Pipeline by Stage" horizontal bar chart labels.
-	measure 'Stage Deal Count' =
-			COUNTROWS ( fct_sales_pipeline )
+	measure 'Stage Deal Count' = COUNTROWS ( fct_sales_pipeline )
 		formatString: #,0
 		displayFolder: Stage Analysis
 		lineageTag: d1c2e3f4-1111-4a5b-8c7d-2a3b4c5d6e7f
 
 	/// Total unweighted deal value per stage.
 	/// The pipeline bar chart uses this as bar length (value, not count).
-	measure 'Stage Value' =
-			SUM ( fct_sales_pipeline[Expected Order Volume (€)] )
+	measure 'Stage Value' = SUM ( fct_sales_pipeline[Expected Order Volume (€)] )
 		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
 		displayFolder: Stage Analysis
 		lineageTag: d2c3e4f5-2222-4a5b-8c7d-2a3b4c5d6e7f

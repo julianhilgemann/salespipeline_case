@@ -17,12 +17,12 @@ ref table DateTableTemplate_d7e80eff-317a-4bca-9984-bba5f6b59baa
 ref table LocalDateTable_42810b2c-b38c-40ee-a293-c9a211cfddea
 ref table LocalDateTable_92f464ec-5b1c-4c4d-83eb-5c29fa452f0a
 ref table dim_stage_definitions
+ref table _measuretable
 ref table dim_sales_rep
 ref table dim_lead_source
 ref table dim_industry
 ref table dim_country
 ref table dim_customer
-ref table _measuretable
 
 ref cultureInfo de-DE
 

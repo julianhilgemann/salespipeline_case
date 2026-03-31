@@ -1,0 +1,18 @@
+# Normalize line endings to LF for all text files.
+# This prevents phantom diffs caused by CRLF/LF mismatches between
+# Windows tools (Power BI Desktop) and cross-platform editors/CI.
+
+* text=auto eol=lf
+
+# Power BI project files
+*.tmdl text eol=lf
+*.pbip text eol=lf
+*.json text eol=lf
+
+# Documentation
+*.md text eol=lf
+
+# Data files — treat as binary to avoid any line ending conversion
+*.xlsx binary
+*.pbix binary
+*.zip binary

@@ -5,25 +5,25 @@
       "ordinal": 0,
       "scrollPosition": {
         "x": 0,
-        "y": 506
+        "y": 0
       },
       "nodes": [
         {
           "location": {
-            "x": 531,
-            "y": 891
+            "x": 334.2418907688899,
+            "y": 159.10773719377823
           },
           "nodeIndex": "fct_sales_pipeline",
           "size": {
-            "height": 389,
+            "height": 300,
             "width": 234
           },
           "zIndex": 0
         },
         {
           "location": {
-            "x": 121,
-            "y": 1004.5
+            "x": 357.92344045428172,
+            "y": 568.95223781823177
           },
           "nodeIndex": "dim_stage_definitions",
           "nodeLineageTag": "80e06bcf-a1ad-4679-8ddc-ba7a29dc5e4d",
@@ -35,11 +35,76 @@
         },
         {
           "location": {
-            "x": 829,
-            "y": 960.5
+            "x": 987.89360641844087,
+            "y": 205.72627804135533
           },
           "nodeIndex": "_measuretable",
           "nodeLineageTag": "7797d3be-c07e-40f4-93a8-68c80e5d320e",
+          "size": {
+            "height": 483.628328114798,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 618.480537641048,
+            "y": 326.13686451128956
+          },
+          "nodeIndex": "dim_country",
+          "nodeLineageTag": "a7b8c9d0-1e2f-4a4b-5c6d-7e8f9a0b1c2d",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 285.97248639153696,
+            "y": -50
+          },
+          "nodeIndex": "dim_customer",
+          "nodeLineageTag": "a9b0c1d2-3e4f-4a6b-7c8d-9e0f1a2b3c4d",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 177.71636532423111
+          },
+          "nodeIndex": "dim_industry",
+          "nodeLineageTag": "a5b6c7d8-9e0f-4a2b-3c4d-5e6f7a8b9c0d",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 73.683216715000981,
+            "y": 509.27783149393315
+          },
+          "nodeIndex": "dim_lead_source",
+          "nodeLineageTag": "a3b4c5d6-7e8f-4a0b-1c2d-3e4f5a6b7c8d",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 570.219865274951,
+            "y": 4.910857069272879
+          },
+          "nodeIndex": "dim_sales_rep",
+          "nodeLineageTag": "a1b2c3d4-5e6f-4a8b-9c0d-1e2f3a4b5c6d",
           "size": {
             "height": 104,
             "width": 234
@@ -48,7 +113,7 @@
         }
       ],
       "name": "All tables",
-      "zoomValue": 100,
+      "zoomValue": 97.47951301288083,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
