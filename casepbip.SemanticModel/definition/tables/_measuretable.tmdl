@@ -86,6 +86,27 @@ table _measuretable
 		displayFolder: Core KPIs
 		lineageTag: b6a7c8d9-6666-4a5b-8c7d-9e0f1a2b3c4d
 
+	/// True conversion rate across all deals in the current filter context.
+	/// Denominator = ALL deals (Won + Lost + Open), unlike Win Rate which only
+	/// counts closed deals. This gives a more realistic view of pipeline effectiveness
+	/// since open deals that are unlikely to close are factored in.
+	/// Example: 5 won / 10 total = 50% (vs Win Rate of 5/7 = 71% ignoring open deals).
+	measure 'Conversion Rate' =
+			VAR _won_count =
+				// Count of deals that reached the Won stage
+				CALCULATE (
+					COUNTROWS ( fct_sales_pipeline ),
+					fct_sales_pipeline[Stage] = "Won"
+				)
+			VAR _total_deals =
+				// All deals in current filter context — no stage exclusions
+				COUNTROWS ( fct_sales_pipeline )
+			RETURN
+				DIVIDE ( _won_count, _total_deals )
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		displayFolder: Core KPIs
+		lineageTag: b8a9c0d1-8888-4a5b-8c7d-9e0f1a2b3c4d
+
 	/// Average deal size across all opportunities.
 	/// Provides context for pipeline composition and deal quality assessment.
 	measure 'Avg Deal Size' = AVERAGE ( fct_sales_pipeline[Expected Order Volume (€)] )
@@ -194,7 +215,7 @@ table _measuretable
 				in
 				    #"Removed Columns"
 
-	changedProperty = Name
-
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
 

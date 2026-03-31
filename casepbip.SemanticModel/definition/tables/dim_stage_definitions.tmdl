@@ -1,6 +1,11 @@
+/// Dimension table: Stage definitions and metadata.
+/// Source: Sales_Pipeline.xlsx → "Definitions" sheet.
+/// One row per pipeline stage. Contains the sort order, probability, and status category.
 table dim_stage_definitions
 	lineageTag: 80e06bcf-a1ad-4679-8ddc-ba7a29dc5e4d
 
+	/// Ordinal stage identifier (1–6). Used as the sort key for the Stages column
+	/// to ensure pipeline funnel visuals render in correct business order.
 	column ID
 		dataType: string
 		lineageTag: 6380484a-02fe-47e0-8100-3f75af675931
@@ -9,6 +14,9 @@ table dim_stage_definitions
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Stage name. FK target from fct_sales_pipeline[Stage].
+	/// Values (in order): Lead, Qualified, Proposal, Negotiation, Won, Lost.
+	/// Sorted by ID column to enforce correct funnel display order in visuals.
 	column Stages
 		dataType: string
 		lineageTag: f7f92be8-0afc-4d5d-9de0-39737259e78f
@@ -20,6 +28,9 @@ table dim_stage_definitions
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Stage-based win probability as a percentage string (e.g. "20%").
+	/// Deterministic — every deal at a given stage has the same probability.
+	/// Not an independent forecast; used to compute Weighted Pipeline Value.
 	column Probability
 		dataType: string
 		lineageTag: 2378f5f0-02c2-4640-9da1-e937de3290a5
@@ -28,9 +39,14 @@ table dim_stage_definitions
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Calculated column: high-level deal status category.
+	/// Groups the 6 pipeline stages into 3 buckets for simplified analysis:
+	/// "Open" (Lead, Qualified, Proposal, Negotiation), "Won", or "Lost".
+	/// Used in stacked bar charts (e.g. Lead Source Conversion) to show
+	/// the split of outcomes per channel without needing all 6 stage values.
 	column Status =
-			
-			
+
+
 			SWITCH (
 			    dim_stage_definitions[Stages],
 			    "Won", "Won",

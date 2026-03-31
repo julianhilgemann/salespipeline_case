@@ -1,6 +1,11 @@
+/// Auto-generated DAX measure glossary using INFO.VIEW.MEASURES().
+/// One row per measure in the semantic model. Exposes name, description,
+/// DAX expression, format string, display folder, and lineage tag.
+/// Use this table in a report page to document the model for stakeholders.
 table data_glossary
 	lineageTag: 85ce02d0-97fc-4f29-8658-3f7162087182
 
+	/// Auto-generated row index from INFO.VIEW.MEASURES().
 	column ID
 		formatString: 0
 		lineageTag: 76fdb01c-48f2-41e9-a9fc-a90e4ad7e969
@@ -10,6 +15,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Measure display name as shown in the Power BI field list.
 	column Name
 		lineageTag: 5e439f4e-8ec9-42d6-8eac-fe47d6401aa0
 		summarizeBy: none
@@ -18,6 +24,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Name of the table that contains the measure (always _measuretable here).
 	column Table
 		lineageTag: 5a352cb5-cc80-4bd4-b4c0-2f312c09ae0b
 		summarizeBy: none
@@ -26,6 +33,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Measure description sourced from /// doc comments in the TMDL file.
 	column Description
 		lineageTag: 2cf349e4-b3aa-407d-82be-6d558a1fe53f
 		summarizeBy: none
@@ -34,6 +42,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// DAX data type of the measure result.
 	column DataType
 		lineageTag: 47f45819-c240-40cc-8463-af6f1f5d1fe7
 		summarizeBy: none
@@ -42,6 +51,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Full DAX expression of the measure as stored in the model.
 	column Expression
 		lineageTag: d9a8e43a-5ad9-486b-bb27-22535aceddd0
 		summarizeBy: none
@@ -50,6 +60,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Format string applied to the measure output (e.g. currency, percentage).
 	column FormatString
 		lineageTag: c8b39ff1-04b0-4cf7-9bf1-53f29acf03b5
 		summarizeBy: none
@@ -58,6 +69,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Whether the measure is hidden from the report field list.
 	column IsHidden
 		formatString: """TRUE"";""TRUE"";""FALSE"""
 		lineageTag: a1b42e9b-8224-420b-8a24-25f55b2325d1
@@ -67,6 +79,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Measure state (e.g. Ready). Internal model metadata.
 	column State
 		lineageTag: a3d44f41-7723-4738-8885-6a28b193965b
 		summarizeBy: none
@@ -75,6 +88,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Internal KPI identifier if the measure is part of a KPI. Typically blank.
 	column KPIID
 		formatString: 0
 		lineageTag: a690c27d-f058-4e2b-90f1-6e94212cb14f
@@ -84,6 +98,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// True if the measure is a simple aggregation with no explicit DAX expression.
 	column IsSimpleMeasure
 		formatString: """TRUE"";""TRUE"";""FALSE"""
 		lineageTag: 622f4d79-36fc-4bc1-977c-c09587cd90ff
@@ -93,6 +108,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Display folder the measure belongs to (e.g. Core KPIs, Rep Performance).
 	column DisplayFolder
 		lineageTag: 7432043b-5945-4264-82b2-53062f57300e
 		summarizeBy: none
@@ -101,6 +117,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Detail rows DAX expression if defined. Typically blank for standard measures.
 	column DetailRowsDefinition
 		lineageTag: 6c598262-2a3f-486b-837b-e8d23eedd300
 		summarizeBy: none
@@ -109,6 +126,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Data category tag applied to the measure. Typically blank.
 	column DataCategory
 		lineageTag: e411c2d0-14c2-45bd-9c25-b6b35559dbdd
 		summarizeBy: none
@@ -117,6 +135,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Dynamic format string definition if the measure uses conditional formatting.
 	column FormatStringDefinition
 		lineageTag: 8658daf5-e0a2-446f-83b7-a5ea6a0af905
 		summarizeBy: none
@@ -125,6 +144,7 @@ table data_glossary
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Internal lineage tag GUID. Used by Power BI for object tracking across refreshes.
 	column LineageTag
 		lineageTag: 3da1a469-7f6c-4995-8770-50f769c72b82
 		summarizeBy: none
@@ -137,7 +157,7 @@ table data_glossary
 		mode: import
 		source = ```
 				INFO.VIEW.MEASURES()
-				
+
 				```
 
 	annotation PBI_Id = 41894a8d0e364f47a19c4a425118bb5c

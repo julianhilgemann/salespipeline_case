@@ -1,6 +1,10 @@
+/// Fact table: Sales Pipeline opportunities.
+/// One row per deal snapshot. Source: Sales_Pipeline.xlsx → "Sales Pipeline" sheet (GitHub raw).
+/// Primary key: Lead ID. All monetary analysis flows through Expected Order Volume (€).
 table fct_sales_pipeline
 	lineageTag: 972f6e16-9714-4f94-b804-c0c8fa14f15d
 
+	/// Unique identifier for each sales opportunity. Primary key — one row per deal.
 	column 'Lead ID'
 		dataType: string
 		lineageTag: f50a7064-cf2c-43e3-ae92-b065eabf0d19
@@ -9,6 +13,8 @@ table fct_sales_pipeline
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Account name of the prospective customer. FK → dim_customer.
+	/// Only 3 customers exist: AlphaTech, BetaLogics, GammaSolutions.
 	column 'Customer Name'
 		dataType: string
 		lineageTag: 322281ae-7d65-4159-90b5-563382501284
@@ -17,6 +23,8 @@ table fct_sales_pipeline
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Individual point of contact at the customer account.
+	/// Not used in dashboard analysis — retained for drill-through context.
 	column 'Contact Person'
 		dataType: string
 		lineageTag: 367d218f-7775-4c65-824f-97575c434087
@@ -25,6 +33,8 @@ table fct_sales_pipeline
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Acquisition channel through which the lead was generated. FK → dim_lead_source.
+	/// Used in the Lead Source Conversion chart and loss rate analysis.
 	column 'Lead Source'
 		dataType: string
 		lineageTag: 0bc8c45f-8b36-4e4d-b8dc-dac27d4fc702
@@ -33,6 +43,8 @@ table fct_sales_pipeline
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Salesperson responsible for the deal. FK → dim_sales_rep.
+	/// Used in the Rep Performance leaderboard.
 	column 'Sales Rep'
 		dataType: string
 		lineageTag: 40f39b1c-9bc3-482b-bd41-e0170ce0ef60
@@ -41,6 +53,8 @@ table fct_sales_pipeline
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Free-text description of the sales opportunity.
+	/// Not used in analytical visuals — retained for drill-through context.
 	column 'Opportunity Name'
 		dataType: string
 		lineageTag: 0236ae76-10d5-49ea-8c02-2409c3eda798
@@ -49,6 +63,8 @@ table fct_sales_pipeline
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Current pipeline stage of the deal. FK → dim_stage_definitions[Stages].
+	/// Values: Lead, Qualified, Proposal, Negotiation, Won, Lost.
 	column Stage
 		dataType: string
 		lineageTag: 97c22bc7-e9d4-466a-9579-2224d5af3190
@@ -57,6 +73,8 @@ table fct_sales_pipeline
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Date on which the deal last changed stage. Used for time-based filtering.
+	/// Note: snapshot data — no stage history, only the most recent stage transition date.
 	column 'Stage Change Date'
 		dataType: dateTime
 		formatString: Short Date
@@ -73,6 +91,8 @@ table fct_sales_pipeline
 
 		annotation UnderlyingDateTimeDataType = Date
 
+	/// Stage-based win probability (0–1). Deterministic — derived from stage, not an
+	/// independent forecast signal. Used in Weighted Pipeline Value calculations.
 	column 'Probability (%)'
 		dataType: double
 		formatString: 0\ %;-0\ %;0\ %
@@ -82,6 +102,8 @@ table fct_sales_pipeline
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Projected deal close date. Used for forward-looking pipeline filtering.
+	/// Note: dates may be in the past for stale open deals.
 	column 'Expected Close Date'
 		dataType: dateTime
 		formatString: Short Date
@@ -98,6 +120,8 @@ table fct_sales_pipeline
 
 		annotation UnderlyingDateTimeDataType = Date
 
+	/// Monetary value of the deal in Euros. Primary basis for all revenue measures.
+	/// Summarizes as SUM by default — do not use direct aggregation, use measures instead.
 	column 'Expected Order Volume (€)'
 		dataType: int64
 		formatString: "€"\ #,0;-"€"\ #,0;"€"\ #,0
@@ -107,6 +131,8 @@ table fct_sales_pipeline
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Reason the deal was lost. Populated only when Stage = "Lost".
+	/// Drives the Loss Reasons bar chart — BLANK for all non-Lost deals.
 	column 'Loss Reason'
 		dataType: string
 		lineageTag: 38868a08-4771-429c-971f-efa2d08273f3
@@ -115,6 +141,7 @@ table fct_sales_pipeline
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Customer industry vertical. FK → dim_industry. Used as a slicer dimension.
 	column Industry
 		dataType: string
 		lineageTag: 00991dbd-c028-49fc-8be5-c9c06e7cfba9
@@ -123,6 +150,7 @@ table fct_sales_pipeline
 
 		annotation SummarizationSetBy = Automatic
 
+	/// Customer country (DACH region: AT, DE, CH). FK → dim_country. Used as a slicer dimension.
 	column Country
 		dataType: string
 		lineageTag: f245208e-b47a-4dc6-8c5d-0defbb413586
