@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
-  "name": "531d1304e8a316c84e13",
+  "name": "5e5cecb9918ebd2c6221",
   "position": {
-    "x": 774.765558397272,
-    "y": 129.85507246376812,
-    "z": 15000,
-    "height": 102.57459505541347,
-    "width": 234.61210571184995,
-    "tabOrder": 15000
+    "x": 222.77777777777777,
+    "y": 130,
+    "z": 35000,
+    "height": 24.444444444444443,
+    "width": 28.333333333333332,
+    "tabOrder": 35000
   },
   "visual": {
     "visualType": "card",
@@ -23,11 +23,11 @@
                       "Entity": "_measuretable"
                     }
                   },
-                  "Property": "Win Rate"
+                  "Property": "tt"
                 }
               },
-              "queryRef": "_measuretable.Win Rate",
-              "nativeQueryRef": "Win Rate"
+              "queryRef": "_measuretable.tt",
+              "nativeQueryRef": "tt"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "_measuretable"
                   }
                 },
-                "Property": "Win Rate"
+                "Property": "tt"
               }
             },
             "direction": "Descending"
@@ -55,29 +55,23 @@
       "categoryLabels": [
         {
           "properties": {
-            "fontSize": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "false"
                 }
               }
-            },
-            "fontFamily": {
+            }
+          }
+        }
+      ],
+      "wordWrap": [
+        {
+          "properties": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0.6
-                    }
-                  }
+                  "Value": "false"
                 }
               }
             }
@@ -87,28 +81,10 @@
       "labels": [
         {
           "properties": {
-            "fontFamily": {
+            "preserveWhitespace": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "24D"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#00142D'"
-                    }
-                  }
+                  "Value": "false"
                 }
               }
             }
@@ -117,7 +93,20 @@
       ]
     },
     "visualContainerObjects": {
-      "visualHeader": [
+      "background": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
         {
           "properties": {
             "show": {
@@ -127,6 +116,26 @@
                 }
               }
             },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'b6dd2df2c63ae17ea088'"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Canvas'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
             "transparency": {
               "expr": {
                 "Literal": {
@@ -157,13 +166,7 @@
                   }
                 }
               }
-            }
-          }
-        }
-      ],
-      "background": [
-        {
-          "properties": {
+            },
             "show": {
               "expr": {
                 "Literal": {
@@ -176,5 +179,63 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b5db8fe22269b1e60af7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "data_glossary"
+              }
+            },
+            "Property": "Name"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "data_glossary",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "d"
+                          }
+                        },
+                        "Property": "Name"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Open Deals'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
   }
 }

@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["fct_sales_pipeline","dim_stage_definitions","dim_sales_rep","dim_lead_source","dim_industry","dim_country","dim_customer","Measuretable","_measuretable"]
+annotation PBI_QueryOrder = ["fct_sales_pipeline","dim_stage_definitions","dim_sales_rep","dim_lead_source","dim_industry","dim_country","dim_customer","_measuretable"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -24,6 +24,7 @@ ref table dim_industry
 ref table dim_country
 ref table dim_customer
 ref table data_glossary
+ref table param_dims
 
 ref cultureInfo de-DE
 

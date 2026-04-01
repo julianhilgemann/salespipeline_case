@@ -157,7 +157,7 @@ table data_glossary
 		mode: import
 		source = ```
 				INFO.VIEW.MEASURES()
-
+				
 				```
 
 	annotation PBI_Id = 41894a8d0e364f47a19c4a425118bb5c

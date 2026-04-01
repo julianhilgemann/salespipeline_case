@@ -1,33 +1,33 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
-  "name": "531d1304e8a316c84e13",
+  "name": "c4ccb3b4d8cb0c4f6168",
   "position": {
-    "x": 774.765558397272,
-    "y": 129.85507246376812,
-    "z": 15000,
-    "height": 102.57459505541347,
-    "width": 234.61210571184995,
-    "tabOrder": 15000
+    "x": 0,
+    "y": 0,
+    "z": 1000,
+    "height": 100,
+    "width": 600,
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "card",
+    "visualType": "tableEx",
     "query": {
       "queryState": {
         "Values": {
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "_measuretable"
+                      "Entity": "data_glossary"
                     }
                   },
-                  "Property": "Win Rate"
+                  "Property": "Description"
                 }
               },
-              "queryRef": "_measuretable.Win Rate",
-              "nativeQueryRef": "Win Rate"
+              "queryRef": "data_glossary.Description",
+              "nativeQueryRef": "Description"
             }
           ]
         }
@@ -36,32 +36,65 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "_measuretable"
+                    "Entity": "data_glossary"
                   }
                 },
-                "Property": "Win Rate"
+                "Property": "Description"
               }
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "objects": {
-      "categoryLabels": [
+      "columnWidth": [
         {
           "properties": {
-            "fontSize": {
+            "value": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "971.2296803266867D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "data_glossary.Description"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
             "fontFamily": {
               "expr": {
                 "Literal": {
@@ -69,12 +102,12 @@
                 }
               }
             },
-            "color": {
+            "backColor": {
               "solid": {
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 1,
+                      "ColorId": 3,
                       "Percent": 0.6
                     }
                   }
@@ -84,31 +117,36 @@
           }
         }
       ],
-      "labels": [
+      "columnFormatting": [
         {
           "properties": {
-            "fontFamily": {
+            "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                  "Value": "'Left'"
                 }
               }
-            },
+            }
+          },
+          "selector": {
+            "metadata": "data_glossary.Description"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "24D"
+                  "Value": "10D"
                 }
               }
             },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#00142D'"
-                    }
-                  }
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -117,20 +155,76 @@
       ]
     },
     "visualContainerObjects": {
-      "visualHeader": [
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
-            },
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Table KPI Glossary'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
             "transparency": {
               "expr": {
                 "Literal": {
                   "Value": "100D"
+                }
+              }
+            },
+            "border": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             },
@@ -146,24 +240,6 @@
                 }
               }
             },
-            "border": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 2,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "background": [
-        {
-          "properties": {
             "show": {
               "expr": {
                 "Literal": {

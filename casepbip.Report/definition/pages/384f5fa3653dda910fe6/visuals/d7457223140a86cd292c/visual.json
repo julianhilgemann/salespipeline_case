@@ -622,51 +622,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "747055dad38217b6cf4f",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fct_sales_pipeline"
-              }
-            },
-            "Property": "Lead Source"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "8b63d3729a0956ce4d72",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_measuretable"
-              }
-            },
-            "Property": "Stage Deal Count"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "3751a6c20bf16afe032e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_stage_definitions"
-              }
-            },
-            "Property": "Status"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

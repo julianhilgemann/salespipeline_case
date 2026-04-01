@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
-  "name": "ed4d3ff038444f3894f5",
+  "name": "f168fca7500f4dce01ba",
   "position": {
-    "x": 648.18414322250646,
-    "y": 248.79795396419439,
-    "z": 18000,
-    "height": 33.827791986359763,
-    "width": 615.44757033248084,
-    "tabOrder": 18000
+    "x": 230.90909090909093,
+    "y": 130,
+    "z": 30000,
+    "height": 20,
+    "width": 20,
+    "tabOrder": 30000
   },
   "visual": {
     "visualType": "actionButton",
@@ -18,91 +18,49 @@
             "shapeType": {
               "expr": {
                 "Literal": {
-                  "Value": "'blank'"
-                }
-              }
-            }
-          },
-          "selector": {
-            "id": "default"
-          }
-        },
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "text": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        },
-        {
-          "properties": {
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Performance Overview'"
+                  "Value": "'information'"
                 }
               }
             },
-            "fontSize": {
+            "lineWeight": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "1L"
                 }
               }
             },
-            "fontFamily": {
+            "bottomMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#00142D'"
-                    }
-                  }
-                }
-              }
-            },
-            "horizontalAlignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'left'"
+                  "Value": "2L"
                 }
               }
             },
             "leftMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "10L"
+                  "Value": "2L"
                 }
               }
             },
-            "verticalAlignment": {
+            "topMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "'top'"
+                  "Value": "2L"
+                }
+              }
+            },
+            "rightMargin": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            },
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
                 }
               }
             }
@@ -111,35 +69,9 @@
             "id": "default"
           }
         }
-      ],
-      "outline": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
       ]
     },
     "visualContainerObjects": {
-      "title": [
-        {
-          "properties": {
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Page Header'"
-                }
-              }
-            }
-          }
-        }
-      ],
       "visualHeader": [
         {
           "properties": {
@@ -174,7 +106,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 4,
+                      "ColorId": 2,
                       "Percent": 0
                     }
                   }

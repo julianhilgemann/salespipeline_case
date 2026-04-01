@@ -5,7 +5,7 @@
     "x": 16.363636363636363,
     "y": 518.18181818181813,
     "z": 26000,
-    "height": 185.45454545454544,
+    "height": 186.36363636363635,
     "width": 612.72727272727263,
     "tabOrder": 26000
   },
@@ -412,37 +412,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "b2d281cb4ebb1e07a3fa",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fct_sales_pipeline"
-              }
-            },
-            "Property": "Loss Reason"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "c85efc73c39a6419fbfc",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_measuretable"
-              }
-            },
-            "Property": "Loss Count"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

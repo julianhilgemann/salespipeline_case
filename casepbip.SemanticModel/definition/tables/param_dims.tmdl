@@ -1,0 +1,50 @@
+table param_dims
+	lineageTag: c2915c0a-4d60-4d0f-97c7-bc1ea75db926
+
+	column Parameter
+		lineageTag: 67a53bc7-2688-4a3c-8f39-7f2c8fd26495
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: e78a201a-83a8-4d5b-9482-0d29b8b48510
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: f2e3acac-d127-4467-97b0-1af968a1ab51
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition param_dims = calculated
+		mode: import
+		source =
+				{
+				    ("Country", NAMEOF('dim_country'[Country]), 0),
+				    ("Customer Name", NAMEOF('dim_customer'[Customer Name]), 1),
+				    ("Industry", NAMEOF('dim_industry'[Industry]), 2),
+				    ("Sales Rep", NAMEOF('dim_sales_rep'[Sales Rep]), 3)
+				}
+
+	annotation PBI_Id = 0e3c851ea23c4e4d90ad0639680342d9
+

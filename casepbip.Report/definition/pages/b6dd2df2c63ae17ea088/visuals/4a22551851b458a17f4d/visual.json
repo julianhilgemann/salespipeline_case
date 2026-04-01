@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
-  "name": "f59ea5ff6eff45587533",
+  "name": "4a22551851b458a17f4d",
   "position": {
-    "x": 648.18414322250646,
-    "y": 484.50127877237856,
-    "z": 8000,
-    "height": 219.33503836317135,
-    "width": 615.44757033248084,
-    "tabOrder": 8000
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 100,
+    "width": 600,
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "shape",
@@ -152,6 +152,13 @@
                   }
                 }
               }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
             }
           }
         }
@@ -175,7 +182,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'BG Lead Source Conversion'"
+                  "Value": "'BG KPI Avg Deal'"
                 }
               }
             }

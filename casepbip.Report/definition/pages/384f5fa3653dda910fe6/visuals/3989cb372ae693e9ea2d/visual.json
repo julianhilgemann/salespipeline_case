@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "3989cb372ae693e9ea2d",
   "position": {
-    "x": 16.497346474601972,
-    "y": 282.39575435936314,
+    "x": 16.666666666666668,
+    "y": 282.22222222222223,
     "z": 27000,
-    "height": 186.3229719484458,
-    "width": 612.34268385140251,
+    "height": 186.66666666666666,
+    "width": 612.22222222222217,
     "tabOrder": 27000
   },
   "visual": {
@@ -351,7 +351,7 @@
             "fillTransparency": {
               "expr": {
                 "Literal": {
-                  "Value": "80D"
+                  "Value": "90D"
                 }
               }
             },
@@ -592,20 +592,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "4117d1ee3576ac29abd0",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_measuretable"
-              }
-            },
-            "Property": "Stage Weighted Value"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

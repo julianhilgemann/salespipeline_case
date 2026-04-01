@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "dd52773ac27377cf78c9",
   "position": {
-    "x": 648.18181818181813,
-    "y": 282.72727272727269,
+    "x": 647.77777777777771,
+    "y": 318.88888888888886,
     "z": 28000,
-    "height": 186.36363636363635,
-    "width": 615.45454545454538,
+    "height": 150,
+    "width": 616.66666666666663,
     "tabOrder": 28000
   },
   "visual": {
@@ -20,31 +20,32 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fct_sales_pipeline"
+                      "Entity": "dim_country"
                     }
                   },
-                  "Property": "Sales Rep"
+                  "Property": "Country"
                 }
               },
-              "queryRef": "fct_sales_pipeline.Sales Rep",
-              "nativeQueryRef": "Rep",
+              "queryRef": "dim_country.Country",
+              "nativeQueryRef": "Country",
               "active": true,
-              "displayName": "Rep"
-            },
+              "displayName": "Country"
+            }
+          ],
+          "fieldParameters": [
             {
-              "field": {
+              "parameterExpr": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_customer"
+                      "Entity": "param_dims"
                     }
                   },
-                  "Property": "Customer Name"
+                  "Property": "Parameter"
                 }
               },
-              "queryRef": "dim_customer.Customer Name",
-              "nativeQueryRef": "Customer Name",
-              "active": false
+              "index": 0,
+              "length": 1
             }
           ]
         },
@@ -143,42 +144,6 @@
         }
       }
     },
-    "expansionStates": [
-      {
-        "roles": [
-          "Rows"
-        ],
-        "levels": [
-          {
-            "queryRefs": [
-              "fct_sales_pipeline.Sales Rep"
-            ],
-            "isCollapsed": true,
-            "identityKeys": [
-              {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "fct_sales_pipeline"
-                    }
-                  },
-                  "Property": "Sales Rep"
-                }
-              }
-            ],
-            "isPinned": true
-          },
-          {
-            "queryRefs": [
-              "dim_customer.Customer Name"
-            ],
-            "isCollapsed": true,
-            "isPinned": true
-          }
-        ],
-        "root": {}
-      }
-    ],
     "objects": {
       "grid": [
         {

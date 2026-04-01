@@ -45,8 +45,8 @@ table dim_stage_definitions
 	/// Used in stacked bar charts (e.g. Lead Source Conversion) to show
 	/// the split of outcomes per channel without needing all 6 stage values.
 	column Status =
-
-
+			
+			
 			SWITCH (
 			    dim_stage_definitions[Stages],
 			    "Won", "Won",
