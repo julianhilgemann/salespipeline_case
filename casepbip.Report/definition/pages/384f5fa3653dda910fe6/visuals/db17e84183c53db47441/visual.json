@@ -80,7 +80,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''dim_country''[Country]'"
+                                "Value": "'''dim_customer''[Customer Name]'"
                               }
                             }
                           ]
@@ -108,7 +108,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'''dim_country''[Country]'"
+                                      "Value": "'''dim_customer''[Customer Name]'"
                                     }
                                   }
                                 ]
@@ -132,7 +132,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Country"
+                            "0": "Customer Name"
                           }
                         ]
                       }

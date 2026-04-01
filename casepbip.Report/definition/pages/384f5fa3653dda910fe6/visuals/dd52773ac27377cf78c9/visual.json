@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
   "name": "dd52773ac27377cf78c9",
   "position": {
-    "x": 647.77777777777771,
-    "y": 318.88888888888886,
+    "x": 648.15964523281593,
+    "y": 318.49223946784923,
     "z": 28000,
-    "height": 150,
-    "width": 616.66666666666663,
+    "height": 150.86474501108648,
+    "width": 615.4323725055433,
     "tabOrder": 28000
   },
   "visual": {
@@ -20,16 +20,16 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_country"
+                      "Entity": "dim_customer"
                     }
                   },
-                  "Property": "Country"
+                  "Property": "Customer Name"
                 }
               },
-              "queryRef": "dim_country.Country",
-              "nativeQueryRef": "Country",
+              "queryRef": "dim_customer.Customer Name",
+              "nativeQueryRef": "Customer Name",
               "active": true,
-              "displayName": "Country"
+              "displayName": "Customer Name"
             }
           ],
           "fieldParameters": [
@@ -274,6 +274,84 @@
                 }
               }
             }
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "_measuretable.Total Pipeline Value"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "dataBars": {
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#66aeff'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'minColor'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'foreground'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_measuretable.Total Pipeline Value"
           }
         }
       ]
